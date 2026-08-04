@@ -1,11 +1,11 @@
 .DS_Store
 
 # Raw source assets (originals kept locally, not part of the deployed site)
-Fibi House/
-Queensbury House/
-chelsea reach/
-kinnerton/
-MetaForm 2026.pdf
+/Fibi House/
+/Queensbury House/
+/chelsea reach/
+/kinnerton/
+/MetaForm 2026.pdf
 
 # Local dev tooling
 .claude/
