@@ -40,6 +40,299 @@
             0% { transform: scale(1); }
             100% { transform: scale(1.12); }
         }
+
+        /* ---------------------------------------------------------
+           360 Integrated Services — architectural accordion.
+           Ported from the approved standalone prototype. Entirely
+           scoped under #metaform-architectural-accordion; no bare
+           element selectors, so nothing here leaks into the rest of
+           the site.
+        ----------------------------------------------------------*/
+        #metaform-architectural-accordion {
+            --mf-bg: #f4f3ef;
+            --mf-panel: #ebe9e3;
+            --mf-ink: #101319;
+            --mf-muted: #60636a;
+            --mf-line: #c9c7c0;
+            --mf-active-bg: #14171b;
+            --mf-active-ink: #f7f6f2;
+            box-sizing: border-box;
+            width: 100%;
+            padding: 34px;
+            color: var(--mf-ink);
+            background: var(--mf-bg);
+        }
+        #metaform-architectural-accordion *,
+        #metaform-architectural-accordion *::before,
+        #metaform-architectural-accordion *::after {
+            box-sizing: border-box;
+        }
+        #metaform-architectural-accordion .mf-heading {
+            margin-bottom: 28px;
+        }
+        #metaform-architectural-accordion h2 {
+            margin: 0;
+            font-size: clamp(30px, 5vw, 54px);
+            line-height: 1;
+            font-weight: 300;
+            letter-spacing: -.03em;
+        }
+        #metaform-architectural-accordion .mf-panels {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            min-height: 470px;
+            border-top: 1px solid var(--mf-line);
+            border-bottom: 1px solid var(--mf-line);
+            transition: grid-template-columns 560ms cubic-bezier(.2,.75,.2,1);
+        }
+        #metaform-architectural-accordion.mf-active-investment .mf-panels { grid-template-columns: 1.72fr .64fr .64fr; }
+        #metaform-architectural-accordion.mf-active-development .mf-panels { grid-template-columns: .64fr 1.72fr .64fr; }
+        #metaform-architectural-accordion.mf-active-management .mf-panels { grid-template-columns: .64fr .64fr 1.72fr; }
+        #metaform-architectural-accordion .mf-panel {
+            position: relative;
+            min-width: 0;
+            overflow: hidden;
+            border: 0;
+            border-right: 1px solid var(--mf-line);
+            padding: 0;
+            background: var(--mf-panel);
+            color: var(--mf-ink);
+            text-align: left;
+            cursor: pointer;
+            isolation: isolate;
+        }
+        #metaform-architectural-accordion .mf-panel:last-child { border-right: 0; }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] {
+            background: var(--mf-active-bg);
+            color: var(--mf-active-ink);
+        }
+        #metaform-architectural-accordion .mf-panel:focus-visible {
+            outline: 2px solid currentColor;
+            outline-offset: -4px;
+        }
+        #metaform-architectural-accordion .mf-panel::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            opacity: .22;
+            background-size: 24px 24px;
+            background-position: 0 0;
+            background-image:
+                linear-gradient(to right, currentColor 1px, transparent 1px),
+                linear-gradient(to bottom, currentColor 1px, transparent 1px);
+            mask-image: linear-gradient(to bottom, transparent, black 22%, black);
+        }
+        #metaform-architectural-accordion .mf-panel-inner {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            min-width: 340px;
+            padding: 24px;
+        }
+        #metaform-architectural-accordion .mf-index-row {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 16px;
+            font-size: 12px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            opacity: .7;
+        }
+        #metaform-architectural-accordion .mf-plus {
+            width: 22px;
+            height: 22px;
+            position: relative;
+            flex: 0 0 auto;
+        }
+        #metaform-architectural-accordion .mf-plus::before,
+        #metaform-architectural-accordion .mf-plus::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 18px;
+            height: 1px;
+            background: currentColor;
+            transform: translate(-50%, -50%);
+            transition: transform 320ms ease;
+        }
+        #metaform-architectural-accordion .mf-plus::after { transform: translate(-50%, -50%) rotate(90deg); }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-plus::after { transform: translate(-50%, -50%) rotate(0); }
+        #metaform-architectural-accordion .mf-panel-title {
+            margin-top: 24px;
+            font-size: clamp(28px, 3.8vw, 46px);
+            line-height: 1;
+            letter-spacing: -.04em;
+            font-weight: 400;
+            white-space: nowrap;
+        }
+        #metaform-architectural-accordion .mf-subtitle {
+            margin-top: 8px;
+            font-size: 14px;
+            line-height: 24px;
+            opacity: .68;
+            white-space: nowrap;
+        }
+        #metaform-architectural-accordion .mf-drawing {
+            position: relative;
+            height: 120px;
+            margin: 24px 0;
+            color: currentColor;
+        }
+        #metaform-architectural-accordion .mf-drawing svg { width: 100%; height: 100%; overflow: visible; }
+        #metaform-architectural-accordion .mf-drawing path,
+        #metaform-architectural-accordion .mf-drawing rect,
+        #metaform-architectural-accordion .mf-drawing circle {
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.2;
+            vector-effect: non-scaling-stroke;
+            stroke-dasharray: 1000;
+            stroke-dashoffset: 1000;
+        }
+        #metaform-architectural-accordion .mf-drawing .mf-solid {
+            fill: currentColor;
+            stroke: none;
+            opacity: 0;
+            transform-box: fill-box;
+            transform-origin: center bottom;
+            transform: scaleY(0);
+        }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-drawing path {
+            animation: mf-trace-line 2200ms cubic-bezier(.45,0,.2,1) 220ms forwards;
+        }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-drawing rect:not(.mf-solid),
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-drawing circle {
+            animation: mf-trace-line 1500ms cubic-bezier(.45,0,.2,1) 820ms forwards;
+        }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-drawing .mf-solid {
+            animation: mf-rise-bar 900ms cubic-bezier(.2,.75,.2,1) 1450ms forwards;
+        }
+        @keyframes mf-trace-line {
+            from { stroke-dashoffset: 1000; }
+            to { stroke-dashoffset: 0; }
+        }
+        @keyframes mf-rise-bar {
+            from { opacity: 0; transform: scaleY(0); }
+            to { opacity: 1; transform: scaleY(1); }
+        }
+        #metaform-architectural-accordion .mf-services {
+            display: flex;
+            flex-direction: column;
+            gap: 0;
+            margin-top: auto;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: opacity 280ms ease 120ms, transform 340ms ease 120ms;
+        }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-services {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        #metaform-architectural-accordion .mf-service {
+            position: relative;
+            display: flex;
+            align-items: center;
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 8px 12px 24px;
+            font-size: 13px;
+            opacity: 0;
+            transform: translateX(-12px);
+        }
+        #metaform-architectural-accordion .mf-service:nth-child(2) { margin-left: 24px; width: calc(100% - 24px); }
+        #metaform-architectural-accordion .mf-service:nth-child(3) { margin-left: 48px; width: calc(100% - 48px); }
+        #metaform-architectural-accordion .mf-service:nth-child(4) { margin-left: 72px; width: calc(100% - 72px); }
+        #metaform-architectural-accordion .mf-service:nth-child(5) { margin-left: 96px; width: calc(100% - 96px); }
+        #metaform-architectural-accordion .mf-service::before {
+            content: "";
+            position: absolute;
+            left: -4px;
+            top: 50%;
+            width: 8px;
+            height: 8px;
+            border: 1px solid currentColor;
+            background: transparent;
+            transform: translateY(-50%) rotate(45deg);
+        }
+        #metaform-architectural-accordion .mf-service::after {
+            content: "";
+            position: absolute;
+            left: 8px;
+            top: 50%;
+            width: 8px;
+            height: 1px;
+            background: currentColor;
+        }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service {
+            animation: mf-service-reveal 900ms cubic-bezier(.2,.75,.2,1) forwards;
+        }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service:nth-child(1) { animation-delay: 400ms; }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service:nth-child(2) { animation-delay: 750ms; }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service:nth-child(3) { animation-delay: 1100ms; }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service:nth-child(4) { animation-delay: 1450ms; }
+        #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service:nth-child(5) { animation-delay: 1800ms; }
+        @keyframes mf-service-reveal {
+            0% { opacity: 0; transform: translateX(-12px); }
+            55% { opacity: 1; }
+            100% { opacity: .82; transform: translateX(0); }
+        }
+        @media (max-width: 680px) {
+            #metaform-architectural-accordion { padding: 24px; }
+            #metaform-architectural-accordion .mf-heading { display: block; }
+            #metaform-architectural-accordion .mf-panels,
+            #metaform-architectural-accordion.mf-active-development .mf-panels,
+            #metaform-architectural-accordion.mf-active-management .mf-panels {
+                display: block;
+                min-height: 0;
+            }
+            #metaform-architectural-accordion .mf-panel {
+                display: block;
+                width: 100%;
+                border-right: 0;
+                border-bottom: 1px solid var(--mf-line);
+            }
+            #metaform-architectural-accordion .mf-panel:last-child { border-bottom: 0; }
+            #metaform-architectural-accordion .mf-panel-inner { min-width: 0; height: auto; padding: 22px; }
+            #metaform-architectural-accordion .mf-panel-title { margin-top: 18px; font-size: 31px; }
+            #metaform-architectural-accordion .mf-drawing { display: none; }
+            #metaform-architectural-accordion .mf-services {
+                display: none;
+                margin-top: 22px;
+            }
+            #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-services { display: flex; }
+            #metaform-architectural-accordion .mf-service,
+            #metaform-architectural-accordion .mf-service:nth-child(2),
+            #metaform-architectural-accordion .mf-service:nth-child(3),
+            #metaform-architectural-accordion .mf-service:nth-child(4),
+            #metaform-architectural-accordion .mf-service:nth-child(5) {
+                width: 100%;
+                margin-left: 0;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            #metaform-architectural-accordion .mf-panels,
+            #metaform-architectural-accordion .mf-plus::after,
+            #metaform-architectural-accordion .mf-services { transition: none; }
+            #metaform-architectural-accordion .mf-panel[aria-expanded="true"] .mf-service {
+                animation: none;
+                opacity: .82;
+                transform: none;
+            }
+            #metaform-architectural-accordion .mf-drawing path,
+            #metaform-architectural-accordion .mf-drawing rect,
+            #metaform-architectural-accordion .mf-drawing circle {
+                animation: none !important;
+                stroke-dashoffset: 0;
+            }
+            #metaform-architectural-accordion .mf-drawing .mf-solid {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
     </style>
 </head>
 <body class="bg-white text-gray-900">
@@ -122,83 +415,67 @@
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 px-6 bg-gray-50">
+    <section id="services" class="py-20 px-6 bg-white">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-light mb-16 tracking-tight">360° Integrated Services</h2>
-            <div class="grid md:grid-cols-3 gap-8">
-                <!-- Investment -->
-                <div class="bg-white p-8 rounded-lg border border-gray-200 hover:border-gray-300 transition">
-                    <h3 class="text-xl font-semibold mb-6">Investment</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Sourcing opportunities</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Investment appraisal</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Private placement activities</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Debt structuring</span>
-                        </li>
-                    </ul>
+            <section id="metaform-architectural-accordion" aria-labelledby="mf-services-title">
+                <div class="mf-heading">
+                    <h2 id="mf-services-title">360&deg; Integrated Services</h2>
                 </div>
 
-                <!-- Development -->
-                <div class="bg-white p-8 rounded-lg border border-gray-200 hover:border-gray-300 transition">
-                    <h3 class="text-xl font-semibold mb-6">Development</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Programming</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Design management</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Project management</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Construction management</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Financial management</span>
-                        </li>
-                    </ul>
-                </div>
+                <div class="mf-panels">
+                    <button class="mf-panel" type="button" data-mf-panel="investment" aria-expanded="false">
+                        <span class="mf-panel-inner">
+                            <span class="mf-index-row"><span class="mf-plus" aria-hidden="true"></span></span>
+                            <span class="mf-panel-title">Investment</span>
+                            <span class="mf-subtitle">Opportunity, intelligently structured.</span>
+                            <span class="mf-drawing" aria-hidden="true">
+                                <svg viewBox="0 0 430 112"><path d="M8 91H422M39 91V68H86V91M109 91V50H165V91M188 91V33H244V91M267 91V60H326V91M349 91V42H397V91"/><circle cx="67" cy="24" r="12"/><circle cx="139" cy="20" r="7"/><path d="M55 24H151M67 12V91M139 13V91"/></svg>
+                            </span>
+                            <span class="mf-services">
+                                <span class="mf-service">Sourcing opportunities</span>
+                                <span class="mf-service">Investment appraisal</span>
+                                <span class="mf-service">Private placement activities</span>
+                                <span class="mf-service">Debt structuring</span>
+                            </span>
+                        </span>
+                    </button>
 
-                <!-- Management -->
-                <div class="bg-white p-8 rounded-lg border border-gray-200 hover:border-gray-300 transition">
-                    <h3 class="text-xl font-semibold mb-6">Management</h3>
-                    <ul class="space-y-3">
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Sales management</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Operation management</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Controlling and reporting</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="text-black mt-1">•</span>
-                            <span class="text-gray-700 text-sm">Marketing and communication</span>
-                        </li>
-                    </ul>
+                    <button class="mf-panel" type="button" data-mf-panel="development" aria-expanded="false">
+                        <span class="mf-panel-inner">
+                            <span class="mf-index-row"><span class="mf-plus" aria-hidden="true"></span></span>
+                            <span class="mf-panel-title">Development</span>
+                            <span class="mf-subtitle">Vision, rigorously delivered.</span>
+                            <span class="mf-drawing" aria-hidden="true">
+                                <svg viewBox="0 0 430 112"><path d="M28 91L142 22L263 91ZM142 22V91M72 64H216M98 48V91M187 48V91M263 91L343 43L405 79V91M343 43V91"/><rect x="122" y="67" width="40" height="24"/></svg>
+                            </span>
+                            <span class="mf-services">
+                                <span class="mf-service">Programming</span>
+                                <span class="mf-service">Design management</span>
+                                <span class="mf-service">Project management</span>
+                                <span class="mf-service">Construction management</span>
+                                <span class="mf-service">Financial management</span>
+                            </span>
+                        </span>
+                    </button>
+
+                    <button class="mf-panel" type="button" data-mf-panel="management" aria-expanded="false">
+                        <span class="mf-panel-inner">
+                            <span class="mf-index-row"><span class="mf-plus" aria-hidden="true"></span></span>
+                            <span class="mf-panel-title">Management</span>
+                            <span class="mf-subtitle">Performance, actively managed.</span>
+                            <span class="mf-drawing" aria-hidden="true">
+                                <svg viewBox="0 0 430 112"><path d="M20 91H414M40 82L111 62L173 72L242 34L304 49L389 15"/><rect class="mf-solid" x="36" y="78" width="8" height="13"/><rect class="mf-solid" x="107" y="58" width="8" height="33"/><rect class="mf-solid" x="169" y="68" width="8" height="23"/><rect class="mf-solid" x="238" y="30" width="8" height="61"/><rect class="mf-solid" x="300" y="45" width="8" height="46"/><rect class="mf-solid" x="385" y="11" width="8" height="80"/></svg>
+                            </span>
+                            <span class="mf-services">
+                                <span class="mf-service">Sales management</span>
+                                <span class="mf-service">Operational management</span>
+                                <span class="mf-service">Control and reporting</span>
+                                <span class="mf-service">Marketing and communication</span>
+                            </span>
+                        </span>
+                    </button>
                 </div>
-            </div>
+            </section>
         </div>
     </section>
 
@@ -336,6 +613,33 @@
                 mobileMenu.classList.add('hidden');
             });
         });
+    </script>
+
+    <script>
+        // 360 Integrated Services — architectural accordion.
+        // All panels start closed (equal widths, no animation). Clicking a
+        // closed panel opens it and closes the others; clicking the
+        // already-open panel closes it, returning to the equal-width rest
+        // state. Every animation (diagram trace, service reveal, +/- icon)
+        // is pure CSS reacting to aria-expanded, so closing a panel resets
+        // it automatically and reopening always replays from the start.
+        (() => {
+            const root = document.getElementById('metaform-architectural-accordion');
+            if (!root) return;
+            const panels = [...root.querySelectorAll('[data-mf-panel]')];
+            panels.forEach((panel) => {
+                panel.addEventListener('click', () => {
+                    const alreadyOpen = panel.getAttribute('aria-expanded') === 'true';
+                    if (alreadyOpen) {
+                        root.className = '';
+                        panels.forEach((item) => item.setAttribute('aria-expanded', 'false'));
+                    } else {
+                        root.className = `mf-active-${panel.dataset.mfPanel}`;
+                        panels.forEach((item) => item.setAttribute('aria-expanded', String(item === panel)));
+                    }
+                });
+            });
+        })();
     </script>
 </body>
 </html>
