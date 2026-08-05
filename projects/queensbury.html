@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Queensbury House | Metaform Developments</title>
+    <meta name="description" content="Conversion of an existing office building into co-living units, with amenities.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * { scroll-behavior: smooth; }
+    </style>
+</head>
+<body class="bg-white text-gray-900">
+    <!-- Navigation -->
+    <nav class="sticky top-0 bg-white border-b border-gray-100 z-50">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+            <a href="../index.html" class="flex items-center gap-3">
+                <img src="../Metaform_Mark.png" alt="Metaform" style="height: 36px; width: auto;">
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center gap-8">
+                <a href="../index.html#about" class="text-sm hover:text-gray-600 transition">About</a>
+                <a href="../index.html#services" class="text-sm hover:text-gray-600 transition">Services</a>
+                <a href="../index.html#projects" class="text-sm hover:text-gray-600 transition">Projects</a>
+                <a href="../index.html#contact" class="text-sm hover:text-gray-600 transition">Contact</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-50 border-t border-gray-100 p-6 flex flex-col gap-4">
+            <a href="../index.html#about" class="text-sm hover:text-gray-600">About</a>
+            <a href="../index.html#services" class="text-sm hover:text-gray-600">Services</a>
+            <a href="../index.html#projects" class="text-sm hover:text-gray-600">Projects</a>
+            <a href="../index.html#contact" class="text-sm hover:text-gray-600">Contact</a>
+        </div>
+    </nav>
+
+    <!-- Project Header -->
+    <section class="py-16 px-6 border-b border-gray-100">
+        <div class="max-w-4xl mx-auto">
+            <a href="../index.html#projects" class="inline-flex items-center gap-2 text-sm text-gray-500 hover:text-gray-900 transition mb-8">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                </svg>
+                Back to Projects
+            </a>
+            <h1 class="text-4xl md:text-5xl font-light tracking-tight mb-3">Queensbury House</h1>
+            <p class="text-sm text-gray-500 font-medium mb-6">Hastings, UK</p>
+            <p class="text-gray-700 leading-relaxed max-w-2xl">
+                Conversion of an existing office building into co-living accommodation with shared amenities, bringing a considered residential offer to Hastings town centre.
+            </p>
+        </div>
+    </section>
+
+    <!-- Gallery -->
+    <section class="py-16 px-6">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <img src="../images/queensbury/01-exterior.jpg" alt="Queensbury House exterior" class="w-full h-auto rounded-lg">
+            <img src="../images/queensbury/02-roof-terrace.jpg" alt="Queensbury House roof terrace" class="w-full h-auto rounded-lg">
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-100 py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+                <a href="../index.html" class="flex items-center gap-2">
+                    <img src="../Metaform_Mark.png" alt="Metaform" style="height: 24px; width: auto;">
+                </a>
+                <p class="text-gray-500 text-sm">
+                    © 2026 Metaform Developments. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+    </script>
+</body>
+</html>
