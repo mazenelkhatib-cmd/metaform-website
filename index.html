@@ -46,7 +46,7 @@
             height: 100%;
             object-fit: cover;
             opacity: 0;
-            animation: heroFade 24s infinite, heroZoom 24s infinite;
+            animation: heroFade 40s infinite, heroZoom 40s infinite;
         }
         .hero-slide:nth-child(1) { animation-delay: 0s, 0s; }
         .hero-slide:nth-child(2) { animation-delay: 4s, 4s; }
@@ -54,11 +54,15 @@
         .hero-slide:nth-child(4) { animation-delay: 12s, 12s; }
         .hero-slide:nth-child(5) { animation-delay: 16s, 16s; }
         .hero-slide:nth-child(6) { animation-delay: 20s, 20s; }
+        .hero-slide:nth-child(7) { animation-delay: 24s, 24s; }
+        .hero-slide:nth-child(8) { animation-delay: 28s, 28s; }
+        .hero-slide:nth-child(9) { animation-delay: 32s, 32s; }
+        .hero-slide:nth-child(10) { animation-delay: 36s, 36s; }
         @keyframes heroFade {
             0%, 100% { opacity: 0; }
-            4.2% { opacity: 1; }
-            16.7% { opacity: 1; }
-            20.8% { opacity: 0; }
+            2.5% { opacity: 1; }
+            10% { opacity: 1; }
+            12.5% { opacity: 0; }
         }
         @keyframes heroZoom {
             0% { transform: scale(1); }
@@ -104,11 +108,15 @@
         <!-- Background slideshow -->
         <div class="absolute inset-0">
             <img src="images/creechurch/01-front.jpg" alt="" class="hero-slide">
-            <img src="images/kinnerton/01-street-corner.jpg" alt="" class="hero-slide">
+            <img src="images/kinnerton/02-garden-view.jpg" alt="" class="hero-slide">
             <img src="images/chelsea-reach/01-main-view-day.jpg" alt="" class="hero-slide">
-            <img src="images/queensbury/02-roof-terrace.jpg" alt="" class="hero-slide">
-            <img src="images/creechurch/02-office-furnished.jpg" alt="" class="hero-slide">
             <img src="images/queensbury/01-exterior.jpg" alt="" class="hero-slide">
+            <img src="images/chelsea-reach/02-entrance-open.jpg" alt="" class="hero-slide">
+            <img src="images/kinnerton/03-garden-view-alt.jpg" alt="" class="hero-slide">
+            <img src="images/creechurch/04-terrace.jpg" alt="" class="hero-slide">
+            <img src="images/chelsea-reach/03-entrance-retail.jpg" alt="" class="hero-slide">
+            <img src="images/chelsea-reach/04-train-station.jpg" alt="" class="hero-slide">
+            <img src="images/chelsea-reach/05-keypoint-neighbour.jpg" alt="" class="hero-slide">
         </div>
         <div class="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/70"></div>
 
@@ -116,15 +124,9 @@
             <div class="mb-10 inline-block">
                 <img src="Metaform_Mark_White.png" alt="Metaform" style="height: 72px; width: auto;" class="mx-auto drop-shadow-2xl">
             </div>
-            <h1 class="text-5xl md:text-6xl font-light tracking-tight mb-8 leading-tight text-white">
+            <h1 class="text-5xl md:text-6xl font-light tracking-tight leading-tight text-white">
                 Unlocking Potential. <span class="font-semibold">Creating Value.</span>
             </h1>
-            <a href="#contact" class="inline-flex items-center gap-2 bg-white text-black px-8 py-3 hover:bg-gray-100 transition text-sm font-medium rounded">
-                Start a conversation
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </a>
         </div>
     </section>
 
@@ -136,21 +138,12 @@
                     <h2 class="text-4xl font-light mb-8 tracking-tight">About MetaForm</h2>
                     <div class="space-y-6 text-gray-700 leading-relaxed">
                         <p>
-                            MetaForm is led by Mazen El Khatib, Founder & CEO, who brings over 25 years of experience in real estate development and architecture spanning the UK, Europe, the USA, and the Middle East.
+                            MetaForm is a London-based real estate development company that unlocks value through considered design, rigorous construction and disciplined delivery. We work across the full development lifecycle — from acquisition and investment strategy through planning, construction and asset management — transforming complex property opportunities into enduring places, while delivering risk-adjusted returns for our investors.
                         </p>
-                        <p>
-                            Based in London for more than a decade, Mazen has built a strong track record in sourcing, structuring, and delivering high-value, design-led property developments that unlock potential and create lasting value.
-                        </p>
-                        <div class="pt-4 border-t border-gray-200">
-                            <h3 class="font-semibold mb-4">Our Core Values</h3>
-                            <p class="text-gray-600">
-                                Our actions are guided by principles that foster trust and collaboration with clients, investors, team members, and stakeholders, ensuring long-term success and impactful relationships.
-                            </p>
-                        </div>
                     </div>
                 </div>
                 <div class="bg-gray-100 aspect-square rounded-lg overflow-hidden">
-                    <img src="images/creechurch/04-terrace.jpg" alt="London skyline view from a Metaform rooftop terrace" class="w-full h-full object-cover">
+                    <img src="images/about/design-desk.jpg" alt="Architectural model and design sketches on a MetaForm design desk" class="w-full h-full object-cover">
                 </div>
             </div>
         </div>
