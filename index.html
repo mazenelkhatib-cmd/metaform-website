@@ -218,56 +218,15 @@
         }
         #capabilities .cap-stage {
             position: relative;
+            margin-bottom: 48px;
+        }
+        @media (min-width: 640px) {
+            #capabilities .cap-stage {
+                margin-bottom: 0;
+            }
         }
         #capabilities .cap-stage-head {
             position: relative;
-            margin-bottom: 20px;
-        }
-        /* Not part of the grid flow at any width by default — it's purely
-           decorative and only enabled (as an absolutely-positioned overlay,
-           see below) once all four stages sit in a single desktop row.
-           Without this, it would otherwise sit in the grid as an empty
-           first cell and shift every stage over by one at the sm/tablet
-           2-column breakpoint. */
-        #capabilities .cap-connector {
-            display: none;
-        }
-        /* The continuous connector line + dots + between-stage arrows only
-           make sense once all four stages sit in a single row, so they're
-           desktop-only (see the lg: breakpoint below). */
-        @media (min-width: 1024px) {
-            #capabilities .cap-stages {
-                padding-top: 44px;
-            }
-            #capabilities .cap-connector {
-                display: block;
-                position: absolute;
-                top: 12px;
-                left: 0;
-                right: 0;
-                height: 1px;
-                background: var(--cap-line);
-            }
-            #capabilities .cap-stage-head::before {
-                content: '';
-                position: absolute;
-                top: -32px;
-                left: 0;
-                width: 9px;
-                height: 9px;
-                border-radius: 50%;
-                background: var(--bg-capabilities);
-                border: 1.5px solid var(--accent);
-            }
-            #capabilities .cap-stage:not(:last-child) .cap-stage-head::after {
-                content: '\2192';
-                position: absolute;
-                top: -38px;
-                right: -28px;
-                color: var(--accent);
-                font-size: 13px;
-                opacity: 0.8;
-            }
         }
         #capabilities .cap-num {
             display: block;
@@ -283,11 +242,69 @@
             text-transform: uppercase;
             color: var(--text-primary);
         }
+
+        /* Stage timeline — a fine line with a node, running directly
+           beneath each stage's title. At desktop, where all four stages
+           sit in one row, a small chevron (or a closing arrow on the
+           final stage) bridges into the next column so the four lines
+           read as one continuous progression. */
+        #capabilities .cap-timeline {
+            position: relative;
+            height: 20px;
+            margin: 20px 0 28px;
+        }
+        #capabilities .cap-timeline::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: var(--cap-line);
+            transform: translateY(-50%);
+        }
+        #capabilities .cap-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 9px;
+            height: 9px;
+            border-radius: 50%;
+            background: var(--bg-capabilities);
+            border: 1.5px solid var(--accent);
+            transform: translate(-50%, -50%);
+        }
+        @media (min-width: 1024px) {
+            #capabilities .cap-stage:not(:last-child) .cap-timeline::after {
+                content: '\203A';
+                position: absolute;
+                top: 50%;
+                right: -22px;
+                transform: translateY(-58%);
+                color: var(--accent);
+                font-size: 15px;
+                line-height: 1;
+            }
+            #capabilities .cap-stage:last-child .cap-timeline::after {
+                content: '\2192';
+                position: absolute;
+                top: 50%;
+                right: -4px;
+                transform: translateY(-50%);
+                color: var(--accent);
+                font-size: 13px;
+            }
+        }
+
+        #capabilities .cap-illustration {
+            aspect-ratio: 3 / 2;
+            margin-bottom: 24px;
+        }
         #capabilities .cap-illustration img {
             display: block;
             width: 100%;
-            height: auto;
-            margin-bottom: 24px;
+            height: 100%;
+            object-fit: contain;
         }
         #capabilities .cap-list {
             list-style: none;
@@ -299,7 +316,7 @@
             padding-left: 14px;
             margin-bottom: 10px;
             font-size: 0.9rem;
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--text-secondary);
         }
         #capabilities .cap-list li::before {
@@ -313,10 +330,45 @@
             opacity: 0.6;
         }
 
+        /* Bottom connector — desktop-only bracket that gathers the four
+           lists back into one line, reinforcing "one integrated
+           platform". The outer two verticals curve into the horizontal
+           via border-radius; the inner two are plain straight drops. */
+        #capabilities .cap-connector-wrap {
+            display: none;
+        }
+        @media (min-width: 1024px) {
+            #capabilities .cap-connector-wrap {
+                display: block;
+                position: relative;
+                height: 34px;
+                margin-top: 4px;
+            }
+            #capabilities .cap-bracket {
+                position: absolute;
+                left: 12.5%;
+                right: 12.5%;
+                top: 0;
+                height: 28px;
+                border-left: 1px dashed var(--cap-line);
+                border-right: 1px dashed var(--cap-line);
+                border-bottom: 1px solid var(--cap-line);
+                border-radius: 0 0 14px 14px;
+            }
+            #capabilities .cap-bracket-mid {
+                position: absolute;
+                top: 0;
+                height: 28px;
+                border-left: 1px dashed var(--cap-line);
+            }
+            #capabilities .cap-bracket-mid.mid-1 { left: 37.5%; }
+            #capabilities .cap-bracket-mid.mid-2 { left: 62.5%; }
+        }
+
         #capabilities .cap-lifecycle {
-            margin-top: 72px;
-            padding-top: 32px;
-            border-top: 1px dashed var(--cap-line);
+            margin-top: 40px;
+            padding-top: 28px;
+            border-top: 1px solid var(--divider);
             display: flex;
             flex-wrap: wrap;
             align-items: center;
@@ -332,6 +384,13 @@
         #capabilities .cap-lifecycle-arrow {
             opacity: 0.7;
             letter-spacing: normal;
+        }
+        @media (min-width: 1024px) {
+            #capabilities .cap-lifecycle {
+                margin-top: 4px;
+                padding-top: 16px;
+                border-top: none;
+            }
         }
 
         #capabilities [data-reveal] {
@@ -352,38 +411,6 @@
         #capabilities [data-reveal="stage"]:nth-of-type(4) { transition-delay: 660ms; }
         #capabilities [data-reveal="lifecycle"] { transition-delay: 780ms; }
 
-        /* True single-column mobile: vertical journey with a connecting
-           line down the left edge. This is intentionally narrower than
-           the sm: tablet breakpoint below, since the 2x2 tablet grid
-           doesn't suit a single vertical line. */
-        @media (max-width: 639px) {
-            #capabilities .cap-stage {
-                position: relative;
-                padding-left: 28px;
-                margin-bottom: 48px;
-            }
-            #capabilities .cap-stage:not(:last-child)::before {
-                content: '';
-                position: absolute;
-                top: 6px;
-                bottom: -40px;
-                left: 4px;
-                width: 1px;
-                background: var(--cap-line);
-            }
-            #capabilities .cap-stage-head::before {
-                content: '';
-                position: absolute;
-                top: 4px;
-                left: -28px;
-                width: 9px;
-                height: 9px;
-                border-radius: 50%;
-                background: var(--bg-capabilities);
-                border: 1.5px solid var(--accent);
-            }
-        }
-
         @media (prefers-reduced-motion: reduce) {
             #capabilities [data-reveal] {
                 opacity: 1;
@@ -395,7 +422,7 @@
 </head>
 <body class="bg-white">
     <!-- Navigation -->
-    <nav class="sticky top-0 bg-white border-b border-gray-100 z-50">
+    <nav class="sticky top-0 bg-white border-b border-[#d6d8d8] z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
             <div class="flex items-center gap-3">
                 <img src="Metaform_Mark.png" alt="Metaform" style="height: 36px; width: auto;">
@@ -418,7 +445,7 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobileMenu" class="hidden md:hidden bg-gray-50 border-t border-gray-100 p-6 flex flex-col gap-4">
+        <div id="mobileMenu" class="hidden md:hidden bg-gray-50 border-t border-[#d6d8d8] p-6 flex flex-col gap-4">
             <a href="#about" class="text-sm hover:text-gray-600">About</a>
             <a href="#capabilities" class="text-sm hover:text-gray-600">Capabilities</a>
             <a href="#projects" class="text-sm hover:text-gray-600">Projects</a>
@@ -448,7 +475,7 @@
                 <img src="Metaform_Mark_White.png" alt="Metaform" style="height: 144px; width: auto; opacity: 0.5;" class="mx-auto drop-shadow-2xl">
             </div>
             <h1 class="hero-heading text-white">
-                Unlocking Potential. <span class="font-semibold">Creating Value.</span>
+                Unlocking Potential. Creating Value.
             </h1>
             <p class="mt-4 text-sm md:text-base font-light text-gray-300 tracking-wide">
                 Design-led real estate investment and development.
@@ -559,13 +586,12 @@
             </div>
 
             <div class="cap-stages grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-14">
-                <div class="cap-connector" aria-hidden="true"></div>
-
                 <div class="cap-stage" data-reveal="stage">
                     <div class="cap-stage-head">
                         <span class="cap-num">01</span>
                         <h3 class="cap-title">Investment</h3>
                     </div>
+                    <div class="cap-timeline" aria-hidden="true"><span class="cap-node"></span></div>
                     <div class="cap-illustration" aria-hidden="true">
                         <img src="images/capabilities/01-investment.jpg" alt="" loading="lazy">
                     </div>
@@ -584,6 +610,7 @@
                         <span class="cap-num">02</span>
                         <h3 class="cap-title">Development</h3>
                     </div>
+                    <div class="cap-timeline" aria-hidden="true"><span class="cap-node"></span></div>
                     <div class="cap-illustration" aria-hidden="true">
                         <img src="images/capabilities/02-development.jpg" alt="" loading="lazy">
                     </div>
@@ -602,6 +629,7 @@
                         <span class="cap-num">03</span>
                         <h3 class="cap-title">Delivery</h3>
                     </div>
+                    <div class="cap-timeline" aria-hidden="true"><span class="cap-node"></span></div>
                     <div class="cap-illustration" aria-hidden="true">
                         <img src="images/capabilities/03-delivery.jpg" alt="" loading="lazy">
                     </div>
@@ -620,6 +648,7 @@
                         <span class="cap-num">04</span>
                         <h3 class="cap-title">Realisation</h3>
                     </div>
+                    <div class="cap-timeline" aria-hidden="true"><span class="cap-node"></span></div>
                     <div class="cap-illustration" aria-hidden="true">
                         <img src="images/capabilities/04-realisation.jpg" alt="" loading="lazy">
                     </div>
@@ -632,6 +661,12 @@
                         <li>Investor reporting</li>
                     </ul>
                 </div>
+            </div>
+
+            <div class="cap-connector-wrap" aria-hidden="true">
+                <div class="cap-bracket"></div>
+                <div class="cap-bracket-mid mid-1"></div>
+                <div class="cap-bracket-mid mid-2"></div>
             </div>
 
             <div class="cap-lifecycle" data-reveal="lifecycle">
@@ -752,7 +787,7 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-white border-t border-gray-100 py-12 px-6">
+    <footer class="bg-white border-t border-[#d6d8d8] py-12 px-6">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row items-center justify-between gap-8">
                 <div class="flex items-center gap-2">
