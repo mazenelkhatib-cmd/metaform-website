@@ -6,13 +6,99 @@
     <title>Metaform Developments | Real Estate Development</title>
     <meta name="description" content="MetaForm is a UK-based real estate development company committed to creating unique, high-quality projects with dedication to architectural design and construction excellence.">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
     <style>
+        /* ---------------------------------------------------------
+           Design tokens — one palette, one type system, shared by
+           every section on the site.
+        ----------------------------------------------------------*/
+        :root {
+            --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            --text-primary: #111820;
+            --text-secondary: #4e555c;
+            --bg-about: #f2f2f0;
+            --bg-capabilities: #e4e5e3;
+            --divider: #d6d8d8;
+            --accent: #a9793a;
+        }
+
         * {
             scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-primary);
+        }
+
+        /* ---------------------------------------------------------
+           Shared type system — one eyebrow treatment, one heading
+           language (two tiers) and one body-copy treatment, reused
+           by every section instead of being restyled per-section.
+        ----------------------------------------------------------*/
+        .section-eyebrow {
+            font-family: var(--font-sans);
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 1.25rem;
+        }
+        .section-tick {
+            width: 32px;
+            height: 1px;
+            background: var(--accent);
+            margin-bottom: 1.25rem;
+        }
+        .section-heading {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            line-height: 1.15;
+            color: var(--text-primary);
+            font-size: clamp(2rem, 1.65rem + 1.5vw, 2.75rem);
+        }
+        .subsection-heading {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            line-height: 1.2;
+            color: var(--text-primary);
+            font-size: clamp(1.5rem, 1.3rem + 0.8vw, 1.875rem);
+        }
+        .hero-heading {
+            font-family: var(--font-sans);
+            font-weight: 300;
+            letter-spacing: -0.01em;
+            line-height: 1.1;
+            font-size: clamp(2.25rem, 1.7rem + 2.4vw, 3.5rem);
+        }
+        .body-copy {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            line-height: 1.75;
+        }
+        .body-copy p + p {
+            margin-top: 1.5rem;
+        }
+        .caption {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* One reusable vertical rhythm for the four major content
+           sections (About, Capabilities, Projects, Contact), instead
+           of each section carrying its own arbitrary py- value. */
+        .section-padding {
+            padding-top: 4rem;
+            padding-bottom: 4rem;
+        }
+        @media (min-width: 768px) {
+            .section-padding { padding-top: 6rem; padding-bottom: 6rem; }
+        }
+        @media (min-width: 1024px) {
+            .section-padding { padding-top: 8rem; padding-bottom: 8rem; }
         }
         .hero-slide {
             position: absolute;
@@ -51,25 +137,7 @@
            so the two sections still read as separate chapters.
         ----------------------------------------------------------*/
         #about {
-            --ab-accent: #a9793a;
-            --ab-bg: #f2f2f0;
-            background: var(--ab-bg);
-        }
-        #about .ab-eyebrow {
-            color: var(--ab-accent);
-            letter-spacing: 0.22em;
-        }
-        #about .ab-tick {
-            width: 32px;
-            height: 1px;
-            background: var(--ab-accent);
-            margin-bottom: 20px;
-        }
-        #about .ab-headline {
-            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            color: #1a1a1a;
+            background: var(--bg-about);
         }
         #about .ab-image img {
             display: block;
@@ -78,7 +146,7 @@
             object-fit: cover;
         }
         #about .ab-divider {
-            border-top: 1px solid rgba(0, 0, 0, 0.08);
+            border-top: 1px solid var(--divider);
         }
         #about .ab-focus-item {
             display: flex;
@@ -89,7 +157,7 @@
             flex: 0 0 auto;
             width: 26px;
             height: 26px;
-            color: var(--ab-accent);
+            color: var(--accent);
         }
         #about .ab-icon svg {
             width: 100%;
@@ -135,26 +203,8 @@
            continuous block.
         ----------------------------------------------------------*/
         #capabilities {
-            --cap-accent: #a9793a;
-            --cap-bg: #dbdbd9;
             --cap-line: rgba(169, 121, 58, 0.35);
-            background: var(--cap-bg);
-        }
-        #capabilities .cap-eyebrow {
-            color: var(--cap-accent);
-            letter-spacing: 0.22em;
-        }
-        #capabilities .cap-tick {
-            width: 32px;
-            height: 1px;
-            background: var(--cap-accent);
-            margin-bottom: 20px;
-        }
-        #capabilities .cap-headline {
-            font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
-            font-weight: 400;
-            letter-spacing: -0.01em;
-            color: #1a1a1a;
+            background: var(--bg-capabilities);
         }
         #capabilities .cap-intro-line {
             flex: 0 0 auto;
@@ -206,15 +256,15 @@
                 width: 9px;
                 height: 9px;
                 border-radius: 50%;
-                background: var(--cap-bg);
-                border: 1.5px solid var(--cap-accent);
+                background: var(--bg-capabilities);
+                border: 1.5px solid var(--accent);
             }
             #capabilities .cap-stage:not(:last-child) .cap-stage-head::after {
                 content: '\2192';
                 position: absolute;
                 top: -38px;
                 right: -28px;
-                color: var(--cap-accent);
+                color: var(--accent);
                 font-size: 13px;
                 opacity: 0.8;
             }
@@ -223,7 +273,7 @@
             display: block;
             font-size: 12px;
             letter-spacing: 0.12em;
-            color: var(--cap-accent);
+            color: var(--accent);
             margin-bottom: 6px;
         }
         #capabilities .cap-title {
@@ -231,7 +281,7 @@
             font-weight: 600;
             letter-spacing: 0.02em;
             text-transform: uppercase;
-            color: #1a1a1a;
+            color: var(--text-primary);
         }
         #capabilities .cap-illustration img {
             display: block;
@@ -250,7 +300,7 @@
             margin-bottom: 10px;
             font-size: 0.9rem;
             line-height: 1.5;
-            color: #52525b;
+            color: var(--text-secondary);
         }
         #capabilities .cap-list li::before {
             content: '';
@@ -259,7 +309,7 @@
             top: 3px;
             bottom: 3px;
             width: 1px;
-            background: var(--cap-accent);
+            background: var(--accent);
             opacity: 0.6;
         }
 
@@ -277,7 +327,7 @@
             letter-spacing: 0.2em;
             font-size: 0.8rem;
             font-weight: 500;
-            color: var(--cap-accent);
+            color: var(--accent);
         }
         #capabilities .cap-lifecycle-arrow {
             opacity: 0.7;
@@ -329,8 +379,8 @@
                 width: 9px;
                 height: 9px;
                 border-radius: 50%;
-                background: var(--cap-bg);
-                border: 1.5px solid var(--cap-accent);
+                background: var(--bg-capabilities);
+                border: 1.5px solid var(--accent);
             }
         }
 
@@ -343,7 +393,7 @@
         }
     </style>
 </head>
-<body class="bg-white text-gray-900">
+<body class="bg-white">
     <!-- Navigation -->
     <nav class="sticky top-0 bg-white border-b border-gray-100 z-50">
         <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -397,7 +447,7 @@
             <div class="mb-10 inline-block">
                 <img src="Metaform_Mark_White.png" alt="Metaform" style="height: 144px; width: auto; opacity: 0.5;" class="mx-auto drop-shadow-2xl">
             </div>
-            <h1 class="text-3xl md:text-4xl font-light tracking-tight leading-tight text-white">
+            <h1 class="hero-heading text-white">
                 Unlocking Potential. <span class="font-semibold">Creating Value.</span>
             </h1>
             <p class="mt-4 text-sm md:text-base font-light text-gray-300 tracking-wide">
@@ -407,15 +457,15 @@
     </section>
 
     <!-- About Section (merged: About MetaForm + Our Focus) -->
-    <section id="about" class="py-24 px-6" aria-labelledby="about-title">
+    <section id="about" class="section-padding px-6" aria-labelledby="about-title">
         <div class="max-w-6xl mx-auto">
 
             <!-- Part A: About MetaForm -->
             <div class="grid md:grid-cols-5 gap-12 lg:gap-16 items-center">
                 <div class="md:col-span-2">
-                    <p class="ab-eyebrow text-xs font-medium uppercase mb-5" data-reveal="ab-eyebrow">About MetaForm</p>
-                    <h2 id="about-title" class="ab-headline text-4xl md:text-[2.75rem] leading-tight mb-8" data-reveal="ab-headline">Creating value<br>through real estate.</h2>
-                    <div class="space-y-6 text-gray-700 leading-relaxed" data-reveal="ab-body">
+                    <p class="section-eyebrow" data-reveal="ab-eyebrow">About MetaForm</p>
+                    <h2 id="about-title" class="section-heading mb-8" data-reveal="ab-headline">Creating value<br>through real estate.</h2>
+                    <div class="body-copy" data-reveal="ab-body">
                         <p>
                             MetaForm is a London-based real estate investment and development company focused on opportunities where design, planning and active development management can unlock significant value.
                         </p>
@@ -441,9 +491,9 @@
             <!-- Part B: Our Focus -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 lg:divide-x lg:divide-black/10">
                 <div class="mb-12 sm:col-span-2 lg:col-span-1 lg:mb-0 lg:pr-10">
-                    <p class="ab-eyebrow text-xs font-medium uppercase mb-5" data-reveal="focus-eyebrow">Our Focus</p>
-                    <div class="ab-tick" aria-hidden="true"></div>
-                    <h3 class="ab-headline text-3xl leading-tight" data-reveal="focus-headline">Complexity creates opportunity.</h3>
+                    <p class="section-eyebrow" data-reveal="focus-eyebrow">Our Focus</p>
+                    <div class="section-tick" aria-hidden="true"></div>
+                    <h3 class="subsection-heading" data-reveal="focus-headline">Complexity creates opportunity.</h3>
                 </div>
 
                 <div class="ab-focus-item pb-10 sm:pb-0 lg:pl-10 lg:pr-8" data-reveal="focus-item-1">
@@ -454,7 +504,7 @@
                         </svg>
                     </span>
                     <h4 class="font-semibold">Planning &amp; Development</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Potential for additional area, change of use, redevelopment or planning uplift.</p>
+                    <p class="caption">Potential for additional area, change of use, redevelopment or planning uplift.</p>
                 </div>
 
                 <div class="ab-focus-item pb-10 sm:pb-0 lg:px-8" data-reveal="focus-item-2">
@@ -465,7 +515,7 @@
                         </svg>
                     </span>
                     <h4 class="font-semibold">Underutilised &amp; Mispriced</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Assets where existing use, condition or configuration does not reflect their potential.</p>
+                    <p class="caption">Assets where existing use, condition or configuration does not reflect their potential.</p>
                 </div>
 
                 <div class="ab-focus-item pb-10 sm:pb-0 lg:px-8" data-reveal="focus-item-3">
@@ -475,7 +525,7 @@
                         </svg>
                     </span>
                     <h4 class="font-semibold">Repositioning</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Transformation through design, refurbishment, extension or operational improvement.</p>
+                    <p class="caption">Transformation through design, refurbishment, extension or operational improvement.</p>
                 </div>
 
                 <div class="ab-focus-item lg:pl-8" data-reveal="focus-item-4">
@@ -486,7 +536,7 @@
                         </svg>
                     </span>
                     <h4 class="font-semibold">Complex Situations</h4>
-                    <p class="text-gray-600 text-sm leading-relaxed">Opportunities where complexity creates barriers to entry — and therefore potential value.</p>
+                    <p class="caption">Opportunities where complexity creates barriers to entry — and therefore potential value.</p>
                 </div>
             </div>
 
@@ -494,17 +544,17 @@
     </section>
 
     <!-- Capabilities Section -->
-    <section id="capabilities" class="py-24 px-6" aria-labelledby="capabilities-title">
+    <section id="capabilities" class="section-padding px-6" aria-labelledby="capabilities-title">
         <div class="max-w-6xl mx-auto">
             <div class="flex flex-col md:flex-row md:items-start gap-8 md:gap-16 mb-20">
                 <div>
-                    <p class="cap-eyebrow text-xs font-medium uppercase mb-4" data-reveal="eyebrow">Capabilities</p>
-                    <div class="cap-tick" aria-hidden="true"></div>
-                    <h2 id="capabilities-title" class="cap-headline text-4xl md:text-[2.75rem] leading-[1.15]" data-reveal="headline">Integrated<br>Development<br>Platform</h2>
+                    <p class="section-eyebrow" data-reveal="eyebrow">Capabilities</p>
+                    <div class="section-tick" aria-hidden="true"></div>
+                    <h2 id="capabilities-title" class="section-heading" data-reveal="headline">Integrated<br>Development<br>Platform</h2>
                 </div>
                 <div class="cap-intro flex gap-6 md:pt-2" data-reveal="intro">
                     <div class="cap-intro-line" aria-hidden="true"></div>
-                    <p class="text-gray-700 leading-relaxed max-w-xs">MetaForm manages the entire development process through four interconnected disciplines.</p>
+                    <p class="body-copy max-w-xs">MetaForm manages the entire development process through four interconnected disciplines.</p>
                 </div>
             </div>
 
@@ -597,9 +647,9 @@
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-20 px-6 bg-white">
+    <section id="projects" class="section-padding px-6 bg-white">
         <div class="max-w-6xl mx-auto">
-            <h2 class="text-4xl font-light mb-16 tracking-tight">Featured Projects</h2>
+            <h2 class="section-heading mb-16">Featured Projects</h2>
             <div class="grid sm:grid-cols-2 gap-6">
                 <a href="projects/kinnerton.html" class="group aspect-[3/4] overflow-hidden bg-gray-100 block">
                     <img src="images/kinnerton/01-street-corner.jpg" alt="Kinnerton St Houses" class="w-full h-full object-cover grayscale group-hover:grayscale-0 group-hover:scale-105 transition duration-700 ease-out">
@@ -615,15 +665,15 @@
                 </a>
             </div>
             <div class="mt-12 text-center">
-                <p class="text-gray-600 text-sm">More projects coming soon</p>
+                <p class="caption">More projects coming soon</p>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 px-6 bg-gray-50">
-        <div class="max-w-4xl mx-auto">
-            <h2 class="text-4xl font-light mb-12 tracking-tight">Get in Touch</h2>
+    <section id="contact" class="section-padding px-6 bg-gray-50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="section-heading mb-12">Get in Touch</h2>
             <div class="grid md:grid-cols-2 gap-12">
                 <div>
                     <form id="contactForm" class="space-y-6" action="https://formsubmit.co/info@metaform-re.com" method="POST">
@@ -634,7 +684,7 @@
                             <input
                                 type="text"
                                 name="name"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition"
+                                class="w-full px-4 py-3 border border-[#d6d8d8] rounded-lg focus:outline-none focus:border-[#111820] transition"
                                 placeholder="Your name"
                                 required
                             />
@@ -644,7 +694,7 @@
                             <input
                                 type="email"
                                 name="email"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition"
+                                class="w-full px-4 py-3 border border-[#d6d8d8] rounded-lg focus:outline-none focus:border-[#111820] transition"
                                 placeholder="your@email.com"
                                 required
                             />
@@ -654,14 +704,14 @@
                             <textarea
                                 name="message"
                                 rows="5"
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-gray-400 transition resize-none"
+                                class="w-full px-4 py-3 border border-[#d6d8d8] rounded-lg focus:outline-none focus:border-[#111820] transition resize-none"
                                 placeholder="Tell us about your project..."
                                 required
                             ></textarea>
                         </div>
                         <button
                             type="submit"
-                            class="w-full bg-black text-white py-3 hover:bg-gray-900 transition font-medium rounded-lg"
+                            class="w-full bg-[#111820] text-white py-3 hover:bg-[#232d36] transition font-medium rounded-lg"
                         >
                             Send Message
                         </button>
@@ -670,7 +720,7 @@
                 <div class="space-y-8">
                     <div>
                         <h3 class="font-semibold mb-4">Contact Details</h3>
-                        <div class="space-y-4 text-gray-700">
+                        <div class="space-y-4 caption">
                             <div class="flex gap-4">
                                 <svg class="w-5 h-5 text-gray-400 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
@@ -730,33 +780,6 @@
                 mobileMenu.classList.add('hidden');
             });
         });
-    </script>
-
-    <script>
-        // 360 Integrated Services — architectural accordion.
-        // All panels start closed (equal widths, no animation). Clicking a
-        // closed panel opens it and closes the others; clicking the
-        // already-open panel closes it, returning to the equal-width rest
-        // state. Every animation (diagram trace, service reveal, +/- icon)
-        // is pure CSS reacting to aria-expanded, so closing a panel resets
-        // it automatically and reopening always replays from the start.
-        (() => {
-            const root = document.getElementById('metaform-architectural-accordion');
-            if (!root) return;
-            const panels = [...root.querySelectorAll('[data-mf-panel]')];
-            panels.forEach((panel) => {
-                panel.addEventListener('click', () => {
-                    const alreadyOpen = panel.getAttribute('aria-expanded') === 'true';
-                    if (alreadyOpen) {
-                        root.className = '';
-                        panels.forEach((item) => item.setAttribute('aria-expanded', 'false'));
-                    } else {
-                        root.className = `mf-active-${panel.dataset.mfPanel}`;
-                        panels.forEach((item) => item.setAttribute('aria-expanded', String(item === panel)));
-                    }
-                });
-            });
-        })();
     </script>
 
     <script>
