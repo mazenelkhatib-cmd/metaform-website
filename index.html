@@ -18,7 +18,8 @@
             --bg-about: #f2f2f0;
             --bg-capabilities: #e4e5e3;
             --divider: #d6d8d8;
-            --accent: #a9793a;
+            --accent-grey: #9a9d9f;
+            --accent-grey-line: rgba(154, 157, 159, 0.5);
         }
 
         * {
@@ -42,12 +43,6 @@
             letter-spacing: 0.22em;
             text-transform: uppercase;
             color: var(--text-secondary);
-            margin-bottom: 1.25rem;
-        }
-        .section-tick {
-            width: 32px;
-            height: 1px;
-            background: var(--accent);
             margin-bottom: 1.25rem;
         }
         .section-heading {
@@ -157,7 +152,7 @@
             flex: 0 0 auto;
             width: 26px;
             height: 26px;
-            color: var(--accent);
+            color: var(--accent-grey);
         }
         #about .ab-icon svg {
             width: 100%;
@@ -196,21 +191,20 @@
 
         /* ---------------------------------------------------------
            Capabilities — four-stage development lifecycle.
-           Scoped entirely under #capabilities. Shares the Focus
-           section's bronze accent and serif headline treatment, but
-           uses a deliberately different background tone so the two
-           sections read as distinct chapters rather than one
+           Scoped entirely under #capabilities. Shares the site-wide
+           type system and neutral accent-grey with About/Our Focus,
+           but uses a deliberately different background tone so the
+           two sections read as distinct chapters rather than one
            continuous block.
         ----------------------------------------------------------*/
         #capabilities {
-            --cap-line: rgba(169, 121, 58, 0.35);
             background: var(--bg-capabilities);
         }
         #capabilities .cap-intro-line {
             flex: 0 0 auto;
             width: 1px;
             align-self: stretch;
-            background: var(--cap-line);
+            background: var(--accent-grey-line);
         }
 
         #capabilities .cap-stages {
@@ -232,7 +226,7 @@
             display: block;
             font-size: 12px;
             letter-spacing: 0.12em;
-            color: var(--accent);
+            color: var(--accent-grey);
             margin-bottom: 6px;
         }
         #capabilities .cap-title {
@@ -260,7 +254,7 @@
             left: 0;
             right: 0;
             height: 1px;
-            background: var(--cap-line);
+            background: var(--accent-grey-line);
             transform: translateY(-50%);
         }
         #capabilities .cap-node {
@@ -271,7 +265,7 @@
             height: 9px;
             border-radius: 50%;
             background: var(--bg-capabilities);
-            border: 1.5px solid var(--accent);
+            border: 1.5px solid var(--accent-grey);
             transform: translate(-50%, -50%);
         }
         @media (min-width: 1024px) {
@@ -281,7 +275,7 @@
                 top: 50%;
                 right: -22px;
                 transform: translateY(-58%);
-                color: var(--accent);
+                color: var(--accent-grey);
                 font-size: 15px;
                 line-height: 1;
             }
@@ -291,7 +285,7 @@
                 top: 50%;
                 right: -4px;
                 transform: translateY(-50%);
-                color: var(--accent);
+                color: var(--accent-grey);
                 font-size: 13px;
             }
         }
@@ -326,8 +320,8 @@
             top: 3px;
             bottom: 3px;
             width: 1px;
-            background: var(--accent);
-            opacity: 0.6;
+            background: var(--accent-grey);
+            opacity: 0.5;
         }
 
         /* Bottom connector — desktop-only bracket that gathers the four
@@ -350,16 +344,16 @@
                 right: 12.5%;
                 top: 0;
                 height: 28px;
-                border-left: 1px dashed var(--cap-line);
-                border-right: 1px dashed var(--cap-line);
-                border-bottom: 1px solid var(--cap-line);
+                border-left: 1px dashed var(--accent-grey-line);
+                border-right: 1px dashed var(--accent-grey-line);
+                border-bottom: 1px solid var(--accent-grey-line);
                 border-radius: 0 0 14px 14px;
             }
             #capabilities .cap-bracket-mid {
                 position: absolute;
                 top: 0;
                 height: 28px;
-                border-left: 1px dashed var(--cap-line);
+                border-left: 1px dashed var(--accent-grey-line);
             }
             #capabilities .cap-bracket-mid.mid-1 { left: 37.5%; }
             #capabilities .cap-bracket-mid.mid-2 { left: 62.5%; }
@@ -379,7 +373,7 @@
             letter-spacing: 0.2em;
             font-size: 0.8rem;
             font-weight: 500;
-            color: var(--accent);
+            color: var(--accent-grey);
         }
         #capabilities .cap-lifecycle-arrow {
             opacity: 0.7;
@@ -519,7 +513,6 @@
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 lg:divide-x lg:divide-black/10">
                 <div class="mb-12 sm:col-span-2 lg:col-span-1 lg:mb-0 lg:pr-10">
                     <p class="section-eyebrow" data-reveal="focus-eyebrow">Our Focus</p>
-                    <div class="section-tick" aria-hidden="true"></div>
                     <h3 class="subsection-heading" data-reveal="focus-headline">Complexity creates opportunity.</h3>
                 </div>
 
@@ -576,7 +569,6 @@
             <div class="flex flex-col md:flex-row md:items-start gap-8 md:gap-16 mb-20">
                 <div>
                     <p class="section-eyebrow" data-reveal="eyebrow">Capabilities</p>
-                    <div class="section-tick" aria-hidden="true"></div>
                     <h2 id="capabilities-title" class="section-heading" data-reveal="headline">Integrated<br>Development<br>Platform</h2>
                 </div>
                 <div class="cap-intro flex gap-6 md:pt-2" data-reveal="intro">
